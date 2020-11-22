@@ -1,0 +1,39 @@
+{% load static %}
+
+<div class="d-flex p-3 pd-md-4 mb-4 bg-white- border-white shadow-sm">
+    <!-- Medium+ screens -->
+    <div class="d-none d-md-flex flex-row my-auto flex-grow-1 align-items-center">
+        <!-- col-1 left-->
+        <h5 class="mr-3 font-weight-normal justify-content-start">
+            <a class="p-2 text-dark" href="{% url 'home' %}">Home</a>
+        </h5>
+
+
+        <!-- col-2 right -->
+        <div class="d-flex flex-row-reverse flex-grow-1">
+            <nav>
+                {% if request.user.is_authenticated %}
+                <div class="dropdown dropleft show p-2">
+                    <div class="d-flex flex-row">
+                        <!-- account -->
+                        <div class="btn-group dropleft">
+                            <div class="m-auto d-block dropdown-toggle" id="username"
+                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="=false">
+                                Hi, {{request.user.username}}!
+                            </div>
+
+                            <div class="dropdown-menu" aria-labelledby="id_profile_links">
+                                <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <a class="p-2 text-dark" href="{% url 'login' %}">Login</a>
+                <a class="btn btn-outline-primary" href="{% url 'register' %}">Register</a>
+                {% endif %}
+            </nav>
+        </div>
+    </div>
+
+</div>
